@@ -18,5 +18,13 @@
     <ClInclude Include="lmdb++.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="memmappeddb.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="memmappeddb.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

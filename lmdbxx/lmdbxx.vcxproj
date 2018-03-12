@@ -133,6 +133,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="lmdb++.h" />
+    <ClInclude Include="memmappeddb.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="memmappeddb.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
