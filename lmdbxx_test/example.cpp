@@ -62,7 +62,7 @@ int main() {
   {
     auto rtxn = lmdb::txn::begin(env, nullptr, MDB_RDONLY);
     auto dbi = lmdb::dbi::open(rtxn, nullptr);
-    lmdb::val value; 
+    lmdb::val value;
     dbi.get(rtxn, "fullname", value);
     std::cout << "Read \"fullname\" value: " << std::string(value.data(), value.size()) << std::endl << std::endl;
     rtxn.abort();

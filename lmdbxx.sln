@@ -9,6 +9,17 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "lmdbxx_test", "lmdbxx_test\
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "lmdbxx_check", "lmdbxx_check\lmdbxx_check.vcxproj", "{81A51BC3-E92D-4F98-8F43-5414BFB88B0B}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{894B3B21-B643-4614-A47A-75BD0173BDEA}"
+	ProjectSection(SolutionItems) = preProject
+		AUTHORS = AUTHORS
+		CREDITS = CREDITS
+		INSTALL = INSTALL
+		README = README
+		README.rst = README.rst
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "lmdbxx_wrap_test", "lmdbxx_wrap_test\lmdbxx_wrap_test.vcxproj", "{00470F0C-6391-4915-9F5A-31DBD4E117DA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -41,6 +52,14 @@ Global
 		{81A51BC3-E92D-4F98-8F43-5414BFB88B0B}.Release|x64.Build.0 = Release|x64
 		{81A51BC3-E92D-4F98-8F43-5414BFB88B0B}.Release|x86.ActiveCfg = Release|Win32
 		{81A51BC3-E92D-4F98-8F43-5414BFB88B0B}.Release|x86.Build.0 = Release|Win32
+		{00470F0C-6391-4915-9F5A-31DBD4E117DA}.Debug|x64.ActiveCfg = Debug|x64
+		{00470F0C-6391-4915-9F5A-31DBD4E117DA}.Debug|x64.Build.0 = Debug|x64
+		{00470F0C-6391-4915-9F5A-31DBD4E117DA}.Debug|x86.ActiveCfg = Debug|Win32
+		{00470F0C-6391-4915-9F5A-31DBD4E117DA}.Debug|x86.Build.0 = Debug|Win32
+		{00470F0C-6391-4915-9F5A-31DBD4E117DA}.Release|x64.ActiveCfg = Release|x64
+		{00470F0C-6391-4915-9F5A-31DBD4E117DA}.Release|x64.Build.0 = Release|x64
+		{00470F0C-6391-4915-9F5A-31DBD4E117DA}.Release|x86.ActiveCfg = Release|Win32
+		{00470F0C-6391-4915-9F5A-31DBD4E117DA}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
