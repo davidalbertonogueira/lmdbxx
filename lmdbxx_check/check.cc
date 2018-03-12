@@ -2,7 +2,7 @@
 
 #include <cstdio>   /* for std::*printf() */
 #include <cstdlib>  /* for EXIT_FAILURE, EXIT_SUCCESS */
-#include <lmdb++.h>
+#include <lmdbxx/lmdb++.h>
 
 int main() {
   try {
