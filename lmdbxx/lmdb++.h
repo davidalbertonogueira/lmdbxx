@@ -628,9 +628,10 @@ static inline void dbi_set_relctx(MDB_txn* txn, MDB_dbi dbi, void* ctx);
 static inline bool dbi_get(MDB_txn* txn, MDB_dbi dbi, const MDB_val* key, MDB_val* data);
 static inline bool dbi_put(MDB_txn* txn, MDB_dbi dbi, const MDB_val* key, MDB_val* data, unsigned int flags);
 static inline bool dbi_del(MDB_txn* txn, MDB_dbi dbi, const MDB_val* key, const MDB_val* data);
-// TODO: mdb_cmp()
-// TODO: mdb_dcmp()
+static inline int dbi_cmp(MDB_txn* txn, MDB_dbi dbi, const MDB_val* a, const MDB_val* b);
+static inline int dbi_dcmp(MDB_txn* txn, MDB_dbi dbi, const MDB_val* a, const MDB_val* b);
 }
+
 
 /**
  * @throws lmdb::error on failure
@@ -804,6 +805,41 @@ lmdb::dbi_del(MDB_txn* const txn,
   }
   return (rc == MDB_SUCCESS);
 }
+
+/** @brief Compare two data items.
+*          This returns a comparison as if the two data items were keys in the
+*          database.
+* @param[in] txn A transaction handle returned by #mdb_txn_begin()
+* @param[in] dbi A database handle returned by #mdb_dbi_open()
+* @param[in] a The first item to compare
+* @param[in] b The second item to compare
+* @return < 0 if a < b, 0 if a == b, > 0 if a > b
+*/
+static inline int 
+lmdb::dbi_cmp(MDB_txn* txn, 
+              MDB_dbi dbi, 
+              const MDB_val* a, 
+              const MDB_val* b) {
+  return ::mdb_cmp(txn, dbi, a, b);
+}
+/** @brief Compare two data items.
+*          This returns a comparison as if the two items were data items of
+*          the database. The database must have the #MDB_DUPSORT flag.
+* @param[in] txn A transaction handle returned by #mdb_txn_begin()
+* @param[in] dbi A database handle returned by #mdb_dbi_open()
+* @param[in] a The first item to compare
+* @param[in] b The second item to compare
+* @return < 0 if a < b, 0 if a == b, > 0 if a > b
+*/
+static inline int
+lmdb::dbi_dcmp(MDB_txn* txn,
+              MDB_dbi dbi,
+              const MDB_val* a,
+              const MDB_val* b) {
+  return ::mdb_dcmp(txn, dbi, a, b);
+}
+
+
 
 ////////////////////////////////////////////////////////////////////////////////
 /* Procedural Interface: Cursors */
@@ -1712,19 +1748,19 @@ public:
     return lmdb::dbi_del(txn, handle(), key);
   }
 
-  /**
-   * Removes a key/value pair from this database.
-   *
-   * @param txn a transaction handle
-   * @param key
-   * @throws lmdb::error on failure
-   */
-  template<typename K>
-  bool del(MDB_txn* const txn,
-           const K& key) {
-    const lmdb::val k{ &key, sizeof(K) };
-    return lmdb::dbi_del(txn, handle(), k);
-  }
+  ///**
+  // * Removes a key/value pair from this database.
+  // *
+  // * @param txn a transaction handle
+  // * @param key
+  // * @throws lmdb::error on failure
+  // */
+  //template<typename K>
+  //bool del(MDB_txn* const txn,
+  //         const K& key) {
+  //  const lmdb::val k{ &key, sizeof(K) };
+  //  return lmdb::dbi_del(txn, handle(), k);
+  //}
 };
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -1939,10 +1975,9 @@ public:
    * @throws lmdb::error on failure
    */
   template<typename K>
-  bool find(const K& key,
+  bool find(const val& key,
             const MDB_cursor_op op = MDB_SET) {
-    lmdb::val k{ &key, sizeof(K) };
-    return get(k, nullptr, op);
+     return get(key, nullptr, op);
   }
 };
 

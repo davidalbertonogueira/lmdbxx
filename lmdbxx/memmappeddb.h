@@ -30,7 +30,7 @@ public:
   //******************
   //***** FLUSH ******
   //******************
-  bool flush();
+  bool flush(bool force=false);
 
   //******************
   //***** CHECK ******
@@ -43,8 +43,7 @@ public:
   //******************
   bool get(const char* kbuf, size_t ksiz, char* vbuf, size_t max);
   bool get(const char* kbuf, size_t ksiz, std::string * out);
-  bool get(const std::string & kstr,
-           std::string * vstr);
+  bool get(const std::string & kstr, std::string * vstr);
   //******************
   //****** SET *******
   //******************
