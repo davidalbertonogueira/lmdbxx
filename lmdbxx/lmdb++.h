@@ -41,6 +41,10 @@
 #include <windows.h>
 #include <wchar.h>				/* get wcscpy() */
 #endif
+
+#include  <experimental/filesystem>
+namespace fs = std::experimental::filesystem;
+
 namespace lmdb {
 using mode = mdb_mode_t;
 }
@@ -1236,9 +1240,8 @@ public:
   env& open(const char* const path,
             const unsigned int flags = default_flags,
             const mode mode = default_mode) {
-#if defined(_MSC_VER)
-    CreateDirectoryA(path, NULL);
-#endif
+    if (!(flags & MDB_NOSUBDIR))
+      fs::create_directory(path);
     lmdb::env_open(handle(), path, flags, mode);
     return *this;
   }
