@@ -32,6 +32,7 @@ public:
   //******************
   bool flush(bool force=false);
 
+  class val : public lmdb::val {};
   //******************
   //***** CHECK ******
   //******************
@@ -41,12 +42,14 @@ public:
   //******************
   //****** GET *******
   //******************
+  bool get(const val& key, val& data);
   bool get(const char* kbuf, size_t ksiz, char* vbuf, size_t max);
   bool get(const char* kbuf, size_t ksiz, std::string * out);
   bool get(const std::string & kstr, std::string * vstr);
   //******************
   //****** SET *******
   //******************
+  bool set(const val& key, const val& data);
   bool set(const char* kbuf, size_t ksiz, const char* vbuf, size_t vsiz);
   bool set(const std::string & kstr, const  std::string & vstr);
 
@@ -66,11 +69,9 @@ public:
   //******************
   //**** ITERATOR **** 
   //******************
-
-
-
-protected:
+public:
   lmdb::env m_env;
+protected:
   std::string m_open_path;
   bool m_readonly;
 };

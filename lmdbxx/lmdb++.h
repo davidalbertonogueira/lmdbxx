@@ -6,8 +6,10 @@
 /**
  * <lmdb++.h> - C++11 wrapper for LMDB.
  *
- * @author Arto Bendiken <arto@bendiken.net>
+ * @author 1 Arto Bendiken <arto@bendiken.net>
  * @see https://sourceforge.net/projects/lmdbxx/
+ * @author 2 David Nogueira
+ * @ see https://github.com/davidalbertonogueira/lmdbxx
  */
 
 #ifndef __cplusplus
@@ -1965,7 +1967,6 @@ public:
   void del(const unsigned int flags = 0) {
     return lmdb::cursor_del(handle(), flags);
   }
-
 
   /**
    * Positions this cursor at the given key.
